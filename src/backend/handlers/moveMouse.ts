@@ -1,4 +1,5 @@
 import { mouse, down, Point, left, right, up } from '@nut-tree/nut-js';
+
 import { Duplex } from 'stream';
 
 interface DirectionHandlers {
@@ -12,7 +13,7 @@ const directionHandlers: DirectionHandlers = {
   right: (px: number) => right(px),
 };
 
-export async function moveMouse(command: string, args: string[], stream: Duplex) {
+export async function moveMouse(command: string, args: string[], stream: Duplex): Promise<void> {
   const direction = command.split('_')[1];
 
   await mouse.move(directionHandlers[direction](Number(args[0])));

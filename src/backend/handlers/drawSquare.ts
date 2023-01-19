@@ -2,7 +2,7 @@ import { Duplex } from 'stream';
 
 import { mouse, down, left, right, up, Button } from '@nut-tree/nut-js';
 
-export async function drawSquare(command: string, args: string[], stream: Duplex) {
+export async function drawSquare(command: string, args: string[], stream: Duplex): Promise<void> {
   const width = Number(args[0]);
 
   await mouse.pressButton(Button.LEFT);

@@ -2,7 +2,7 @@ import { Duplex } from 'stream';
 
 import { mouse, Button, Point, straightTo } from '@nut-tree/nut-js';
 
-export async function drawCircle(command: string, args: string[], stream: Duplex) {
+export async function drawCircle(command: string, args: string[], stream: Duplex): Promise<void> {
   const radius = Number(args[0]);
   const step = (2 * Math.PI) / 180;
   const end = (360 * Math.PI) / 180;

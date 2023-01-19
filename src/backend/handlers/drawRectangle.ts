@@ -2,7 +2,11 @@ import { Duplex } from 'stream';
 
 import { mouse, down, left, right, up, Button } from '@nut-tree/nut-js';
 
-export async function drawRectangle(command: string, args: string[], stream: Duplex) {
+export async function drawRectangle(
+  command: string,
+  args: string[],
+  stream: Duplex,
+): Promise<void> {
   const width = Number(args[0]);
   const length = Number(args[1]);
 

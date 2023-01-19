@@ -1,11 +1,14 @@
 import { Duplex } from 'stream';
 
 import { screen, mouse, Region } from '@nut-tree/nut-js';
+
 import Jimp from 'jimp';
+
+import { red } from '../utils/shared.js';
 
 const SC_SIDE_LENGTH = 200;
 
-export async function printScreen(command: string, _args: string[], stream: Duplex) {
+export async function printScreen(command: string, _args: string[], stream: Duplex): Promise<void> {
   const position = await mouse.getPosition();
 
   try {
@@ -25,5 +28,6 @@ export async function printScreen(command: string, _args: string[], stream: Dupl
     stream.write(`${command} ${buffer.toString('base64')}`);
   } catch {
     stream.write('coordinates_outside_of_display');
+    console.log(red('coordinates_outside_of_display'));
   }
 }
