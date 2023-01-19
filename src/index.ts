@@ -11,10 +11,10 @@ wsServer.on('connection', async (ws) => {
 
   const duplex = createWebSocketStream(ws, { encoding: 'utf8', decodeStrings: false });
 
-  duplex.on('data', async (data) => {
+  duplex.on('data', async (data: string) => {
     console.log('received: %s', data);
 
-    const [command, ...args]: [string, ...string[]] = data.split(' ');
+    const [command, ...args]: string[] = data.split(' ');
 
     HANDLERS[command](command, args, duplex);
   });
