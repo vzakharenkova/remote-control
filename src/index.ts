@@ -9,6 +9,7 @@ const wsServer = new WebSocketServer({ server: httpServer });
 
 wsServer.on('connection', async (ws) => {
   console.log(blue(`WebSocket connnection is started on port ${HTTP_PORT}`));
+  console.log(blue(`WebSocket url ws://localhost:${HTTP_PORT}`));
 
   const duplex = createWebSocketStream(ws, { encoding: 'utf8', decodeStrings: false });
 
