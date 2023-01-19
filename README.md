@@ -24,8 +24,6 @@ npm install
   ```
   npm run start:prod
   ```
-    - multi mode (horizontal scaling for application)
-  ```
 
 ## Note
 By default server and websocket are started on port `8080`. If you change the port, you should connect to websocket by hand using `WebSocket window` on UI.
