@@ -1,7 +1,7 @@
 import { WebSocketServer, createWebSocketStream } from 'ws';
 
 import { httpServer } from './http_server/createServer.js';
-import { blue, HANDLERS, yellow } from './backend/utils/shared.js';
+import { blue, HANDLERS, red, yellow } from './backend/utils/shared.js';
 
 const HTTP_PORT = 8080;
 
@@ -17,7 +17,11 @@ wsServer.on('connection', async (ws) => {
 
     const [command, ...args]: string[] = data.split(' ');
 
-    HANDLERS[command](command, args, duplex);
+    try {
+      HANDLERS[command](command, args, duplex);
+    } catch {
+      console.log(red(`${command} can not be handled!`));
+    }
   });
 
   duplex.on('close', () => console.log(blue('WebSocket connnection is closed!')));
