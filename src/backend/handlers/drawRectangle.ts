@@ -1,6 +1,6 @@
 import { Duplex } from 'stream';
 
-import { mouse, down, left, right, up, Button } from '@nut-tree/nut-js';
+import { mouse, Button, straightTo, Point } from '@nut-tree/nut-js';
 
 export async function drawRectangle(
   command: string,
@@ -9,13 +9,14 @@ export async function drawRectangle(
 ): Promise<void> {
   const width = Number(args[0]);
   const length = Number(args[1] || args[0]);
+  const position = await mouse.getPosition();
 
   await mouse.pressButton(Button.LEFT);
 
-  await mouse.move(right(width));
-  await mouse.move(down(length));
-  await mouse.move(left(width));
-  await mouse.move(up(length));
+  await mouse.move(straightTo(new Point(position.x + width, position.y)));
+  await mouse.move(straightTo(new Point(position.x + width, position.y + length)));
+  await mouse.move(straightTo(new Point(position.x, position.y + length)));
+  await mouse.move(straightTo(new Point(position.x, position.y)));
 
   await mouse.releaseButton(Button.LEFT);
 
