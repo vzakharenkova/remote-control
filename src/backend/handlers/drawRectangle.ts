@@ -8,7 +8,7 @@ export async function drawRectangle(
   stream: Duplex,
 ): Promise<void> {
   const width = Number(args[0]);
-  const length = Number(args[1]);
+  const length = Number(args[1] || args[0]);
 
   await mouse.pressButton(Button.LEFT);
 
